@@ -4395,7 +4395,7 @@ Function MouseLook()
 		Local up# = (Sin(Shake) / (20.0+CrouchState*20.0))*0.6;, side# = Cos(Shake / 2.0) / 35.0		
 		Local roll# = Max(Min(Sin(Shake/2)*2.5*Min(Injuries+0.25,3.0),8.0),-8.0)
 		
-		;k채채nnet채채n kameraa sivulle jos pelaaja on vammautunut
+		;k?↑?↑nnet?↑?↑n kameraa sivulle jos pelaaja on vammautunut
 		;RotateEntity Collider, EntityPitch(Collider), EntityYaw(Collider), Max(Min(up*30*Injuries,50),-50)
 		PositionEntity Camera, EntityX(Collider), EntityY(Collider), EntityZ(Collider)
 		RotateEntity Camera, 0, EntityYaw(Collider), roll*0.5
@@ -4472,7 +4472,7 @@ Function MouseLook()
 		
 	EndIf
 	
-	;p철lyhiukkasia
+	;p??lyhiukkasia
 	If ParticleAmount=2
 		If Rand(35) = 1 Then
 			Local pvt% = CreatePivot()
@@ -6191,7 +6191,7 @@ Function DrawGUI()
 											DebugLog UserTrackName$(RadioState(0))
 										EndIf
 									EndIf
-								Case 1 ;h채lytyskanava
+								Case 1 ;h?↑lytyskanava
 									DebugLog RadioState(1) 
 									
 									ResumeChannel(RadioCHN(1))
@@ -6407,7 +6407,7 @@ Function DrawGUI()
 											If RadioCHN(Int(SelectedItem\state2)) <> 0 Then PauseChannel(RadioCHN(Int(SelectedItem\state2)))
 										EndIf
 										SelectedItem\state2 = i-2
-										;jos nykyist채 kanavaa ollaan soitettu, laitetaan jatketaan toistoa samasta kohdasta
+										;jos nykyist?↑ kanavaa ollaan soitettu, laitetaan jatketaan toistoa samasta kohdasta
 										If RadioCHN(SelectedItem\state2)<>0 Then ResumeChannel(RadioCHN(SelectedItem\state2))
 									EndIf
 								Next
@@ -7207,7 +7207,7 @@ Function DrawMenu()
 				SaveOptionsINI()
 				
 				AntiAlias Opt_AntiAlias
-				TextureLodBias TextureFloat#
+				;TextureLodBias TextureFloat#
 			EndIf
 			
 			Color 0,255,0
@@ -7309,7 +7309,7 @@ Function DrawMenu()
 						Case 4
 							TextureFloat# = -0.8
 					End Select
-					TextureLodBias TextureFloat
+					;TextureLodBias TextureFloat
 					If (MouseOn(x+270*MenuScale,y-6*MenuScale,100*MenuScale+14,20) And OnSliderID=0) Or OnSliderID=3
 						DrawOptionsTooltip(tx,ty,tw,th+100*MenuScale,"texquality")
 					EndIf
@@ -8293,7 +8293,7 @@ Function LoadEntities()
 	HideEntity OBJTunnel(6)
 	
 	;TextureLodBias TextureBias
-	TextureLodBias TextureFloat#
+	;TextureLodBias TextureFloat#
 	;Devil Particle System
 	;ParticleEffect[] numbers:
 	;	0 - electric spark
@@ -10320,7 +10320,7 @@ Function UpdateMTF%()
 	Local r.Rooms, n.NPCs
 	Local dist#, i%
 	
-	;mtf ei viel채 spawnannut, spawnataan jos pelaaja menee tarpeeksi l채helle gate b:t채
+	;mtf ei viel?↑ spawnannut, spawnataan jos pelaaja menee tarpeeksi l?↑helle gate b:t?↑
 	If MTFtimer = 0 Then
 		If Rand(30)=1 And PlayerRoom\RoomTemplate\Name$ <> "dimension1499" Then
 			
@@ -10636,11 +10636,11 @@ Function CircleToLineSegIsect% (cx#, cy#, r#, l1x#, l1y#, l2x#, l2y#)
 	
 	;Palauttaa:
 	;  True (1) kun:
-	;      Ympyr채 [keskipiste = (cx, cy): s채de = r]
+	;      Ympyr?↑ [keskipiste = (cx, cy): s?↑de = r]
 	;      leikkaa janan, joka kulkee pisteiden (l1x, l1y) & (l2x, l2y) kaitta
 	;  False (0) muulloin
 	
-	;Ympyr채n keskipisteen ja (ainakin toisen) janan p채채tepisteen et채isyys < r
+	;Ympyr?↑n keskipisteen ja (ainakin toisen) janan p?↑?↑tepisteen et?↑isyys < r
 	;-> leikkaus
 	If Distance(cx, cy, l1x, l1y) <= r Then
 		Return True
@@ -10650,7 +10650,7 @@ Function CircleToLineSegIsect% (cx#, cy#, r#, l1x#, l1y#, l2x#, l2y#)
 		Return True
 	EndIf	
 	
-	;Vektorit (janan vektori ja vektorit janan p채채tepisteist채 ympyr채n keskipisteeseen)
+	;Vektorit (janan vektori ja vektorit janan p?↑?↑tepisteist?↑ ympyr?↑n keskipisteeseen)
 	Local SegVecX# = l2x - l1x
 	Local SegVecY# = l2y - l1y
 	
@@ -10673,21 +10673,21 @@ Function CircleToLineSegIsect% (cx#, cy#, r#, l1x#, l1y#, l2x#, l2y#)
 		Return False
 	EndIf
 	
-	;Janan p채채tepisteiden kautta kulkevan suoran ;yht채l철; (ax + by + c = 0)
+	;Janan p?↑?↑tepisteiden kautta kulkevan suoran ;yht?↑l??; (ax + by + c = 0)
 	Local a# = (l2y - l1y) / (l2x - l1x)
 	Local b# = -1
 	Local c# = -(l2y - l1y) / (l2x - l1x) * l1x + l1y
 	
-	;Ympyr채n keskipisteen et채isyys suorasta
+	;Ympyr?↑n keskipisteen et?↑isyys suorasta
 	Local d# = Abs(a * cx + b * cy + c) / Sqr(a * a + b * b)
 	
-	;Ympyr채 on liian kaukana
+	;Ympyr?↑ on liian kaukana
 	;-> ei leikkausta
 	If d > r Then Return False
 	
 	;Local kateetin_pituus# = Cos(angle) * hyp
 	
-	;Jos p채채st채채n t채nne saakka, ympyr채 ja jana leikkaavat (tai ovat sis채kk채in)
+	;Jos p?↑?↑st?↑?↑n t?↑nne saakka, ympyr?↑ ja jana leikkaavat (tai ovat sis?↑kk?↑in)
 	Return True
 End Function
 
@@ -11686,7 +11686,7 @@ Function ScaledMouseY%()
 End Function
 
 Function CatchErrors(location$)
-	Local errStr$ = ErrorLog()
+	Local errStr$; = ErrorLog()
 	Local errF%
 	If Len(errStr)>0 Then
 		If FileType(ErrorFile)=0 Then
@@ -11722,7 +11722,7 @@ Function CatchErrors(location$)
 			While Len(errStr)>0
 				WriteLine errF,errStr
 				DebugLog errStr
-				errStr = ErrorLog()
+				;errStr; = ErrorLog()
 			Wend
 		EndIf
 		Msg = "Blitz3D Error! Details in "+Chr(34)+ErrorFile+Chr(34)

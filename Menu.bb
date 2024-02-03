@@ -202,14 +202,7 @@ Function UpdateMainMenu()
 				Case 3
 					txt = "QUIT"
 					If temp Then
-						;DeInitExt
-						;alDestroy()
-						;FMOD_Pause(MusicCHN)
-						;FMOD_CloseStream(CurrMusicStream)
-						;FMOD_Close()
-						;FMOD_StopStream(CurrMusicStream)
-						FSOUND_Stream_Stop(CurrMusicStream)
-						;FSOUND_Close()
+						StopChannel(CurrMusicStream)
 						End
 					EndIf
 			End Select
@@ -679,7 +672,7 @@ Function UpdateMainMenu()
 						Case 4
 							TextureFloat# = -0.8
 					End Select
-					TextureLodBias TextureFloat
+					;TextureLodBias TextureFloat
 					If (MouseOn(x+310*MenuScale,y-6*MenuScale,150*MenuScale+14,20) And OnSliderID=0) Or OnSliderID=3
 						DrawOptionsTooltip(tx,ty,tw,th+100*MenuScale,"texquality")
 					EndIf
